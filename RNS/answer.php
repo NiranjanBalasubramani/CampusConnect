@@ -25,23 +25,16 @@ include('links1.php');
 <div class="col-lg-8 col-md-8 col-sm-8 col-sm-offset-2 col-md-offset-3 col-lg-offset-2">
 <div class="well">
 	 <fieldset >
-		<form action="submit.php" method="GET"><br>
-		echo file_get_contents("connect/cs/qus$qus/qus.txt");
-fclose($myfile);
-	    Select the Department: <br><br>
-            <input type="radio" name="department" value="gn" checked/>General<br>		
-            <input type="radio" name="department" value="ec"/>Electronics and Communication<br>
-			<input type="radio" name="department" value="cs"/>Computer Science<br>
-			<input type="radio" name="department" value="is"/>Information Science<br>
-			<input type="radio" name="department" value="me"/>Mechanical<br>
-			<input type="radio" name="department" value="it"/>Instrumentation Technology<br>
-			<input type="radio" name="department" value="ce"/>Civil<br>
-			<br>
-			What's your Question? <br><br>
+		    <form action="submita.php" method="GET"><br>
+		echo 
+		$myfile = fopen("connect/cs/qus$qno/qus.txt", "r") or die("Unable to open file!");
+		file_get_contents("connect/cs/qus$qno/qus.txt");
+        fclose($myfile);
+			What's your Answer? <br><br>
 
 		    <textarea name="question" style="width: 250px; height: 150px;" placeholder="enter your QUESTION here...max in 140 characters" required></textarea><br><br>
-			<input   type="hidden" value="0" name="smail">
-			<input type="checkbox" name="smail" value="1"/>Notify  me via mail when answered<br><br>
+			<input   type="hidden" value="<?php echo $usn ?>" name="usn">
+			<input   type="hidden" value="<?php echo $qno ?>" name="qno">
 			
 			<input type="submit" name="submit" value="Submit"/><br>
 		</form>

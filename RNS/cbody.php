@@ -33,145 +33,77 @@ $dbconn=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname) or die(header("Location:
 		   
 for($i=1;$i<$n;$i++){
 $myfile = fopen("connect/cs/qus$i/qus.txt", "r") or die("Unable to open file!");
-echo"<table height=0px>
-<td>
-<tr>
-</td>
-</tr>
-</table>
-<table  width=980px align=center bgcolor=3a4eff >
-    <tr>
-	   <td>
-	    <div id='nav'>
-<h3><center><font color=green> posed by</font></h3></center>";
+?>
 
+<div class="container">
+
+<div class="row" >
+<div class="container">
+<div class=" col-lg-2 col-md-8 col-sm-8 ">
+<div class="well">
+
+
+<?php
 $row=mysqli_fetch_assoc($dbfetch);
 		 
 		   $usn=$row['usn'];
 		   $qno=$row['qno'];
 		   echo $usn;
+		
+?>
+<br><br>
 
+<br><br>
+</div>
+</div> 
+  <div class="col-lg-9 col-md-8 col-sm-8 ">
+   <div class="well">
+<h3><font color=green>NAME</h3></font>
 
-
-echo"</div>
-
-
-<div id='section'>
-<h3><font color=green>question</h3></font>
-<p>";
+<?php
 echo file_get_contents("connect/cs/qus$i/qus.txt");
 fclose($myfile);
-echo"</p>
-</div>
-	   <table  width=980px height=40px align=center bgcolor=3a4eff >
-        <tr>
-	     <td>
-
-<a href='up.php?$qno' style='text-decoration:none'><div id='part1'>
-<h3><font color=green>upvote</h3></font>
-<p>
-</p>
-</div></a>
-
-<div id='space'>
-<p>
-</p>
-</div>
 
 
-<a href='down.php?$qno' style='text-decoration:none'><div id='part1'>
-<h3><font color=green>downvote</h3></font>
-<p>
-</p>
-</div></a>
+?>
 
-
-<div id='space'>
-<p>
-</p>
+<br><br>
+<div class="container " >
+<div class="col-lg-2 col-xs-12 col-md-4">
+<a class="btn btn-primary btn-block btn-md" href="answer.php?value=<?php echo $usn ?>?value=<?php echo $qno ?>">Answer</a></div>
+<div class="col-lg-2 col-xs-12 col-md-4">
+<a class="btn btn-primary btn-block btn-md" href="answers.php?value=$usn">View answer</a></div>
+<div class="col-lg-2 col-xs-12 col-md-4">
+<a class="btn btn-primary btn-block btn-md" href="upvote.php?value=$usn">UPVOTE</a></div>
+<div class="col-lg-2 col-xs-12 col-md-4">
+<a class="btn btn-primary btn-block btn-md" href="downvote.php?value=$usn">DOWNVOTE</a></div>
 </div>
 
-
-<div id='part2'>
-<h3><font color=green>answered by</h3></font>
-<p>
-</p>
 </div>
+   </div>
+   </div>
+    
+	 </div>
+	 </div>
+	 </div>
+	 <?php
+	 }
+	 ?>
 
 
-<div id='space'>
-<p>
-</p>
-</div>
+
+	
 
 
-<a href='posta.php?$qno' style='text-decoration:none'><div id='part1'>
-<h3><font color=green>post answer</h3></font>
-<p>
-</p>
-</div></a>
-
-<div id='space'>
-<p>
-</p>
-</div>
-
-
-<a href='view.php?qnop='$qno'' style='text-decoration:none'><div id='part1'>
-<h3><font color=green>view answers</h3></font>
-<p>
-</p>
-</div></a>
-		 </td>
-</tr>
-</table>
-</td>
-</tr>
-</table>
-<style>
-/* mouse over link */
-a:hover {
-    color: #FF00FF;
-}
-#nav {
-    line-height:15px;
-    background-color:#eeeeee;
-    height:300px;
-    width:250px;
-    float:left;
-    padding:5px;
-}
-#section {
-    width:600px;
-	height:300px;
-	align=justify;
-    float:left;
-    padding:10px;
-}
-#part1 {
-    line-height:15px;
-    background-color:#eeeeee;
-    height:40px;
-    width:150px;
-    float:left;
-    padding:5px;
-}
-#part2 {
-    line-height:15px;
-    background-color:#eeeeee;
-    height:40px;
-    width:320px;
-    float:left;
-    padding:5px;
-}
-#space {
-    line-height:1px;
-    background-color:#3a4eff;
-    height:40px;
-    width:1px;
-    float:left;
-    padding:0px;
-}
-
-</style>";}
+</body>
+</html>
+<?php
+$x= " SELECT firstname,lastname from studentlogin where usn=$usn";
+  $d1=mysqli_query($dbconn,$x);
+	       if($d1==false) echo $dberror;
+		   $ro1=mysqli_fetch_assoc($d1);
+		   $f=$ro1['firstname'];
+		   $l=$ro1['lastname'];
+		 
+		   echo $f;
 ?>

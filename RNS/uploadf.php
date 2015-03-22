@@ -14,22 +14,15 @@
       <script src="js/respond.min.js"></script>
     
   </head>
-<?php
-
-  include('header.php');
-  if(!isset($_COOKIE['user'])) 
-  {
-    include('links.php');
-  } 
-  else 
-  {
-    include('links1.php');
-  }
-  include('cbody.php');
-  include('footer.php');
-
-
-?>
+  <body>
+  <?php
+   include('header.php');
+   include('links1.php');
+   //include('auto.php');
+   include('uploadh.php');
+   include('footer.php');
+   ?>
+    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
